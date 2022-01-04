@@ -93,6 +93,7 @@ sudo apt-get install ansible
 ## ssh into web and db VM from controller
 Web VM - `ssh vagrant@192.168.33.10`
 Db VM - `ssh vagrant@192.168.33.10`
+Password for both VM is `vagrant`
 > Format `ssh vagrant@<IP of VM>`
 
 
