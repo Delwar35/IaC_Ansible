@@ -53,7 +53,14 @@
     
     end
 ```
+## Diagrams
+### Overview
 
+![image](https://user-images.githubusercontent.com/94615905/148100341-c588bb69-f950-4a06-9402-6182163585b5.png)
+
+### Ansible
+
+![image](https://user-images.githubusercontent.com/94615905/148101479-73b9d5ec-9fa6-4a55-8e4c-41469ba10639.png)
 
 ## Lanching VM using Vagrant files
 ### Step 1: cd to where the vagrant file is.
