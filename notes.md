@@ -136,7 +136,7 @@ Db VM - `ssh vagrant@192.168.33.10`
 - `ansible web -a "uname -a"` - give basic information for db VM 
 - `ansible db -a "uname -a"` - give basic information for db VM 
 
-> `ansible db -a "<command>"` will run <command> on all the VM in the hosts file
+> `ansible all -a "<command>"` will run <command> on all the VM in the hosts file
 
 - `ansible db -a "ls -a"` shows all files of each VM in the home dir
 
