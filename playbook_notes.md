@@ -83,7 +83,12 @@ step 5: check nginx status
     shell: |
       sudo apt install npm -y
       sudo npm install pm2 -g
-
+      
+  - name: env variable
+     shell: |
+       echo 'export DB_HOST="mongodb://192.168.33.11:27017/posts"' >> .bashrc
+    become_user: root
+    
   - name: Seed and run app
     shell: |
       cd awsFileTransfer/
@@ -95,10 +100,7 @@ step 5: check nginx status
 
     become_user: root
 
-  - name: env variable
-    shell: |
-      echo 'export DB_HOST="mongodb://10.0.26.152:27017/posts"' >> .bashrc
-    become_user: root
+  
 
 
 # what is the end goal for this task
