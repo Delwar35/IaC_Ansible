@@ -167,4 +167,66 @@ step 5: check if mongodb installed
 
 `ansible db -a "sudo systemctl status mongodb"`
 
+## Linking all play books
+
+```
+---
+- name: start ngnix by running play book
+  import_playbook: install_ngnix.yml
+
+- name: start mogodb by running playbook
+  import_playbook: install_mongo.yml
+
+
+# which host do we need to install nginx in
+- hosts: web
+  gather_facts: true
+
+# what facts do we want to see while installing
+
+# do we need admin access? yes
+  become: true
+
+# what task do we want to perform in this yml file
+  tasks:
+
+  - name: Install Nodejs in web Agent Node
+    shell: |
+      curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - && sudo apt-get install nodejs -y
+
+  - name: Install npm and pm2
+    shell: |
+      sudo apt install npm -y
+      sudo npm install pm2 -g
+
+  - name: env variable
+    shell: |
+      echo 'export DB_HOST="mongodb://192.168.33.11:27017/posts"' >> .bashrc
+    become_user: root
+
+
+  - name: Seed and run app
+    shell: |
+      cd awsFileTransfer/
+      cd app/
+      npm install
+      node seeds/seed.js
+      #pm2 kill
+      #pm2 start app.js
+
+    become_user: root
+
+```
+> By modifying the nodejs playbook with the code above you can use the nodejs playbook to run the ngnix and mongodb playbook.
+
+### How to link playbooks
+
+```
+- name: start ngnix by running play book
+  import_playbook: install_ngnix.yml
+
+- name: start mogodb by running playbook
+  import_playbook: install_mongo.yml
+```
+
 
